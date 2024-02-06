@@ -39,16 +39,14 @@ class SpringBootConditionalAppApplicationTests {
 
 	@Test
 	void contextLoadsDevApp() {
-		Integer port = devApp.getMappedPort(8080);
-		final String expected = "Current profile is dev";
-		assertEquals(expected, result(port));
+		final Integer port = devApp.getMappedPort(8080);
+		assertEquals("Current profile is dev", result(port));
 	}
 
 	@Test
 	void contextLoadsProdApp() {
-		Integer port = prodApp.getMappedPort(8081);
-		final String expected = "Current profile is production";
-		assertEquals(expected, result(port));
+		final Integer port = prodApp.getMappedPort(8081);
+		assertEquals("Current profile is production", result(port));
 	}
 
 }
