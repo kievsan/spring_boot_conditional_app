@@ -4,6 +4,12 @@
 
 =======
 
+# Домашнее задание к занятию «7.6. Testcontainers, Kubernetes»
+
+Выполните и отправьте на проверку решение задачи **[«Интеграционное тестирование»](./src/tasks/task6_intagration_testing/README.md).**
+
+=======
+
 ### Инструкция по выполнению домашнего задания
 
 1. Для написания кода используйте IDE: [Intellij IDEA](https://www.jetbrains.com/idea/download/), версию Community.
