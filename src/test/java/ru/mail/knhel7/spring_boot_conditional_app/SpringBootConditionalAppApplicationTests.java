@@ -16,30 +16,33 @@ class SpringBootConditionalAppApplicationTests {
 	@Autowired
 	TestRestTemplate testTemplate;
 
+//	@Test
+//	void contextLoads() {}
+
 	@Container
-	public final static GenericContainer<?> devApp = new GenericContainer<>("devapp")
+	public final static GenericContainer<?> devApp = new GenericContainer<>("dev_app")
 			.withExposedPorts(8080);
 
 	@Container
-	public final static GenericContainer<?> prodApp = new GenericContainer<>("prodapp")
+	public final static GenericContainer<?> prodApp = new GenericContainer<>("prod_app")
 			.withExposedPorts(8081);
 
 	@Test
 	void contextLoadsDevApp() {
-		ResponseEntity<String> respEntity = testTemplate.getForEntity(
-				"http://localhost:" + devApp.getMappedPort(8080),
-				String.class);
+		Integer port = devApp.getMappedPort(8080);
+		String devURL = "http://localhost:" + port + "/profile";
+		ResponseEntity<String> respEntity = testTemplate.getForEntity(devURL, String.class);
 		String answer = respEntity.getBody();
-		System.out.println(answer);
+		System.out.println(devURL + ": " + answer);
 	}
 
 	@Test
 	void contextLoadsProdApp() {
-		ResponseEntity<String> respEntity = testTemplate.getForEntity(
-				"http://localhost:" + prodApp.getMappedPort(8080),
-				String.class);
+		Integer port = prodApp.getMappedPort(8081);
+		String devURL = "http://localhost:" + port + "/profile";
+		ResponseEntity<String> respEntity = testTemplate.getForEntity(devURL, String.class);
 		String answer = respEntity.getBody();
-		System.out.println(answer);
+		System.out.println(devURL + ": " + answer);
 	}
 
 }
